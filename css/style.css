@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0a0b1d;
+  --panel: #181727;
+  --ink: #f4f3ee;
+  --muted: #8987ae;
+  --line: #24242e;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.task {
+  padding: 72px 40px;
+  border-bottom: 1px solid var(--line);
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+
+.btn {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+
+/*  TASK 0: NAVBAR (Flexbox) */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.logo {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+.logo span { color: var(--muted); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 15px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-links a:hover { border-bottom-color: var(--ink); }
+
+/* TASK 1: CARD ROW (Flexbox) */
+.card-row {
+  display: flex;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--muted);
+}
+
+.card-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.card h3, .card p, .card .btn {
+  margin: 16px 18px 0 18px;
+}
+
+.card .btn {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  margin-top: 18px;
+}
+
+.card p { color: var(--muted); font-size: 14px; flex-grow: 1; }
+
+/* TASK 2: PAGE LAYOUT WITH GRID AREAS */
+.page-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 76px 1fr 64px;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: 14px;
+  height: 380px;
+}
+
+.page-grid > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.pg-header  { grid-area: header;  background: var(--panel); }
+.pg-sidebar { grid-area: sidebar; background: #212534; }
+.pg-main    { grid-area: main;    background: #10112a; color: var(--muted); }
+.pg-footer  { grid-area: footer;  background: var(--panel); }
+
+/* TASK 3: IMAGE GALLERY (Grid) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  height: 190px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.15);
+}
+
+.gallery-item figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  background: rgba(18,18,17,0.8);
+  color: var(--ink);
+  font-size: 13px;
+  padding: 10px 12px;
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+}
+
+.gallery-item:hover figcaption { transform: translateY(0); }
+
+/* TASK 4: PORTFOLIO PAGE (Flexbox + Grid) */
+.portfolio {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.pf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pf-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 24px;
+  background: #10112a;
+}
+
+.pf-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pf-project-card {
+  display: flex;
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.pf-project-card .card-img { width: 140px; height: auto; flex-shrink: 0; }
+
+.pf-project-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 18px;
+}
+
+.pf-project-text p { color: var(--muted); font-size: 14px; }
+
+.pf-sidebar {
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  padding: 20px;
+}
+
+.pf-sidebar h4 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+.pf-sidebar h4:first-child { margin-top: 0; }
+.pf-sidebar ul { padding-left: 18px; font-size: 14px; color: var(--muted); }
+.pf-sidebar p { font-size: 14px; color: var(--muted); }
+
+.pf-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .task { padding: 48px 20px; }
+  .card-row { flex-direction: column; }
+  .page-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+    height: auto;
+  }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .pf-body { grid-template-columns: 1fr; }
+  .pf-project-card { flex-direction: column; }
+  .pf-project-card .card-img { width: 100%; height: 140px; }
+  .navbar, .pf-header { flex-wrap: wrap; gap: 12px; }
+}
